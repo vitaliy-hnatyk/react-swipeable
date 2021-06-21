@@ -139,7 +139,7 @@ function getHandlers(set, handlerProps) {
     if (el && el.addEventListener) {
       // attach touch event listeners and handlers
       const tls = [[touchStart, onStart], [touchMove, onMove], [touchEnd, onEnd]]
-      tls.forEach(([e, h]) => el.addEventListener(e, h))
+      tls.forEach(([e, h]) => el.addEventListener(e, h, {passive: true}))
       // return properly scoped cleanup method for removing listeners
       return () => tls.forEach(([e, h]) => el.removeEventListener(e, h))
     }
